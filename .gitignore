@@ -1,0 +1,17 @@
+.DS_Store
+out
+*.iml
+*.db.lck
+testrun*
+.gradle
+.idea
+/*.log
+*.class
+# Package Files #
+*.war
+*.ear 
+src/main/resources/updates.sql
+src/main/webapp/bkp
+src/main/webapp/assets/ext
+lib
+build

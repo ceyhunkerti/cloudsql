@@ -1,0 +1,193 @@
+select * from
+(
+    select
+        t1.id,
+        t1.status,
+        t1.max_retry_count,
+        t1.error_count,
+        t1.start_after,
+        t1.critical,
+        t1.task_order,
+        t3.name,
+        t3.task_mask,
+        t3.command,
+        t3.predecessors,
+        t2.id,
+        t2.ett_date,
+        t7.id,
+        row_number() over(partition by t1.id order by t2.ett_date desc) rank_id
+    from
+        task_instance t1,
+        plan_instance t2,
+        task_template t3,
+        plan_template t4,
+        module t5,
+        module t6,
+        scheduler t7
+    where
+        t1.plan_instance=t2.id
+        and t1.task_template=t3.id
+        and t3.plan_template=t4.id
+        and t3.module=t5.id
+        and t3.parent_module=t6.id
+        and t4.scheduler=t7.id
+) where rank_id = 1
+
+
+
+select * from task_instance;
+
+  where duration is not null
+
+select * from plan_instance;
+select * from plan_template;
+
+select
+    t4.name,
+    avg(t1.duration) avg_duration
+from
+  TASK_INSTANCE t1,
+  PLAN_INSTANCE t2,
+  PLAN_TEMPLATE t3,
+  TASK_TEMPLATE t4
+where
+      t1.PLAN_INSTANCE = t2.ID
+  AND t2.PLAN_TEMPLATE = t3.ID
+  AND t1.TASK_TEMPLATE = t4.ID
+  AND t3.NAME = '%s'
+  AND (
+        (t3.NAME NOT LIKE '%MONTH%' AND t1.STARTED_AT BETWEEN SYSDATE - 45 AND SYSDATE) OR
+        (t3.NAME LIKE '%MONTH%' AND t1.STARTED_AT BETWEEN SYSDATE - 93 AND SYSDATE)
+      )
+group by
+  t4.name
+
+
+
+
+
+select
+  q1.TASK_INSTANCE_ID,
+  q1.TASK_INSTANCE_STATUS,
+  q1.TASK_TEMPLATE_NAME,
+  q1.MODULE_NAME
+from
+  (
+      select
+          t1.id TASK_INSTANCE_ID,
+          t1.status TASK_INSTANCE_STATUS,
+          t3.name  TASK_TEMPLATE_NAME,
+          t5.name MODULE_NAME,
+          row_number() over(partition by t1.id order by t2.ett_date desc) RANK_ID
+      from
+          task_instance t1,
+          plan_instance t2,
+          task_template t3,
+          plan_template t4,
+          module t5,
+          scheduler t7
+      where
+          t1.plan_instance=t2.id
+          and t1.task_template=t3.id
+          and t3.plan_template=t4.id
+          and t3.module=t5.id
+          and t4.scheduler=t7.id
+          and t2.ETT_DATE <= :ettDate
+  ) q1
+where RANK_ID = 1
+
+
+-------------------------------------------------------------------------------------------
+
+
+select t2.task_mask, t1.* from task_instance t1,task_template t2
+where t1.task_template = t2.id and t2.task_mask is not null;  
+
+select * from plan_template
+
+select distinct task_mask from task_Template
+  
+update task_template
+set task_mask = 
+  decode(task_mask
+        -----------------------------------------------
+        , 'PAZAR'
+        , '0 0 0 ? * SUN * *'
+        -----------------------------------------------
+        , 'GUN=02,GUN=03,GUN=04,GUN=05,GUN=06,GUN=07,GUN=08,GUN=09,GUN=10,GUN=11,GUN=12,GUN=13,GUN=14,GUN=16,GUN=17,GUN=18,GUN=19,GUN=20,GUN=21,GUN=22,GUN=23,GUN=24,GUN=25,GUN=26,GUN=27,GUN=28,GUN=29,GUN=30,GUN=31'
+        , '0 0 0 2-31 * ? * *'  
+        -----------------------------------------------
+        , 'HER AY BASI'
+        , '0 0 0 1 * ? * *'
+        -----------------------------------------------
+        , 'GUN=08,GUN=09,GUN=10,GUN=11,GUN=12,GUN=13,GUN=14,GUN=15,GUN=16,GUN=17'
+        , '0 0 0 8-17 * ? * *'  
+        -----------------------------------------------
+        , 'GUN=07'
+        , '0 0 0 7 * ? * *'
+        -----------------------------------------------
+        , 'GUN=15'
+        , '0 0 0 15 * ? * *'
+        -----------------------------------------------
+        , 'PAZARTESI'
+        , '0 0 0 ? * MON * *'
+        -----------------------------------------------
+        , 'PAZAR,CARSAMBA,PERSEMBE'
+        , '0 0 0 ? * SUN,WED,THU * *'
+        -----------------------------------------------
+        , 'GUN=01,GUN=02,GUN=03'
+        , '0 0 0 1-3 * ? * *'
+        -----------------------------------------------
+        , 'GUN=08,GUN=18,GUN=23'
+        , '0 0 0 8,18,23 * ? * *'
+        -----------------------------------------------
+        , 'CARSAMBA'
+        , '0 0 0 ? * WED * *'
+        -----------------------------------------------
+        , 'SALI'
+        , '0 0 0 ? * TUE * *'
+        -----------------------------------------------
+        , 'PAZARTESI,SALI,CARSAMBA,PERSEMBE,CUMA'
+        , '0 0 0 ? * MON,TUE,WED,THU,FRI * *'
+        -----------------------------------------------
+        , 'GUN=01,GUN=15'
+        , '0 0 0 1,15 * ? * *'
+        -----------------------------------------------  
+        , 'GUN=20'
+        , '0 0 0 20 * ? * *'
+        -----------------------------------------------  
+        , 'HER CEYREK BASI'
+        , '0 0 0 1 1/3 ? * *'
+        -----------------------------------------------  
+        , 'GUN=05'
+        , '0 0 0 5 * ? * *'
+        -----------------------------------------------
+        , 'GUN=01'
+        , '0 0 0 1 * ? * *'
+        -----------------------------------------------
+        , 'GUN=03'
+        , '0 0 0 3 * ? * *'
+        -----------------------------------------------
+        , 'GUN=13'
+        , '0 0 0 13 * ? * *'
+        -----------------------------------------------
+        , task_mask
+  );
+
+ commit;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

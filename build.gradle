@@ -1,0 +1,106 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-snapshot" }
+        mavenLocal()
+    }
+
+}
+
+apply plugin: 'jetty'
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+jar {
+    baseName = 'cloudsql'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-snapshot" }
+}
+
+dependencies {
+
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    runtime files('lib/*.jar')
+
+
+    /* CRaSH */
+    compile 'org.bouncycastle:bcprov-jdk16:1.46'
+    compile 'org.crashub:crash.shell:1.3.0'
+    compile 'org.crashub:crash.connectors.ssh:1.3.0'
+    compile 'org.crashub:crash.cli:1.3.0'
+    compile 'org.crashub:crash.embed.spring:1.3.0'
+
+
+    /*Data source drivers*/
+    compile 'org.xerial:sqlite-jdbc:3.7.2'
+
+    /* DBCP */
+    compile 'commons-dbcp:commons-dbcp:1.4'
+
+
+    /* Hibernate & Persistence */
+    compile 'org.hibernate:hibernate-entitymanager:4.3.5.Final'
+    compile 'org.hibernate:hibernate-c3p0:4.3.5.Final'
+    compile 'org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final'
+    compile 'org.hibernate:hibernate-validator:5.0.1.Final'
+    compile 'org.jadira.usertype:usertype.core:3.1.0.GA'
+    compile 'org.hsqldb:hsqldb:2.3.1'
+    compile 'commons-dbcp:commons-dbcp:1.4'
+    compile 'mysql:mysql-connector-java:5.1.31'
+
+    /* Spring */
+    ['spring-core', 'spring-orm', 'spring-aop', 'spring-beans', 'spring-tx', 'spring-expression', 'spring-aspects', 'spring-context', 'spring-webmvc', 'spring-web'].each {
+        compile "org.springframework:$it:3.2.8.RELEASE"
+    }
+    compile 'org.springframework.data:spring-data-jpa:1.4.2.RELEASE'
+    compile 'org.springframework.security:spring-security-web:3.2.3.RELEASE'
+    compile 'org.springframework.security:spring-security-config:3.2.3.RELEASE'
+    compile 'org.hibernate:hibernate-core:4.3.5.Final'
+
+    /* Servlet */
+    providedCompile 'javax.servlet:servlet-api:2.5'
+    providedCompile 'javax.servlet.jsp:jsp-api:2.1'
+    providedCompile 'javax.servlet:jstl:1.2'
+
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.0'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-joda:2.3.0'
+    compile 'com.fasterxml.jackson.datatype:jackson-datatype-hibernate4:2.3.0'
+
+    /* IO */
+    compile 'commons-io:commons-io:2.4'
+    compile 'commons-fileupload:commons-fileupload:1.3.1'
+
+    /* Util */
+    compile 'org.zeroturnaround:zt-zip:1.8'
+    compile 'commons-lang:commons-lang:2.6'
+    compile 'org.apache.commons:commons-lang3:3.0'
+    compile 'org.apache.commons:commons-collections4:4.0'
+
+    /* Logging */
+    compile 'ch.qos.logback:logback-classic:1.0.13'
+    compile 'org.slf4j:jcl-over-slf4j:1.7.5'
+
+    compile 'org.jasypt:jasypt:1.9.2'
+    compile 'org.apache.commons:commons-email:1.3.3'
+
+
+    testCompile("junit:junit")
+
+}
+
+war.archiveName "cloudsql.war"
+
+jettyRun.contextPath = 'cloudsql'
+//jettyRun.contextPath = ''
+jettyRun.scanIntervalSeconds = 1
+jettyRun.stopPort = 8079
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11'
+}

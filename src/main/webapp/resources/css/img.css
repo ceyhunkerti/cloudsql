@@ -1,0 +1,173 @@
+
+.add-user {
+    background-image : url(../img/add_user-16.png) !important;
+}
+
+.add-connection {
+    background-image : url(../img/add-connection-16.png) !important;
+}
+
+.broken-link {
+    background-image : url(../img/broken-link-16.png) !important;
+}
+
+.broken-link-white {
+    background-image : url(../img/broken-link-white-16.png) !important;
+}
+
+.broom {
+    background-image : url(../img/broom-16.png) !important;
+}
+
+.connected {
+    background-image : url(../img/connected-16.png) !important;
+}
+
+.connected-green {
+    background-image : url(../img/connected-green-16.png) !important;
+}
+
+.connected-white {
+    background-image : url(../img/connected-white-16.png) !important;
+}
+
+.delete {
+    background-image : url(../img/delete-16.png) !important;
+}
+
+.disconnected {
+    background-image : url(../img/disconnected-16.png) !important;
+}
+
+.disconnected-white {
+    background-image : url(../img/disconnected-white-16.png) !important;
+}
+
+.edit-file {
+    background-image : url(../img/edit-file-16.png) !important;
+    background-position: center center;
+}
+
+.email {
+    background-image : url(../img/email-16.png) !important;
+    background-position: center center;
+}
+
+.file {
+    background-image : url(../img/file-16.png) !important;
+}
+
+.file-dirty {
+    background-image : url(../img/file-dirty-16.png) !important;
+}
+
+.file-white {
+    background-image : url(../img/file-white-16.png) !important;
+}
+
+.folder-blue {
+    background-image : url(../img/folder-blue-16.png) !important;
+}
+
+.folder-green {
+    background-image : url(../img/folder-green-16.png) !important;
+}
+
+.folder-white {
+    background-image : url(../img/folder-white-16.png) !important;
+}
+
+.grid {
+    background-image : url(../img/grid-16.png) !important;
+}
+
+.grid-white {
+    background-image : url(../img/grid-white-16.png) !important;
+}
+
+.ink {
+    background-image : url(../img/ink-16.png) !important;
+}
+
+.ink-white {
+    background-image : url(../img/ink-white-16.png) !important;
+}
+
+
+.link-green {
+    background-image : url(../img/link-green-16.png) !important;
+    background-repeat: no-repeat;
+}
+
+.mask {
+    background-image : url(../img/mask-16.png) !important;
+    background-repeat: no-repeat;
+}
+
+.menu {
+    background-image : url(../img/menu-16.png) !important;
+    background-repeat: no-repeat;
+}
+
+
+.power-off {
+    background-image : url(../img/power-off-16.png) !important;
+    background-repeat: no-repeat;
+}
+
+.pencil {
+    background-image : url(../img/pencil-16.png) !important;
+    background-repeat: no-repeat;
+}
+
+.plus {
+    background-image : url(../img/plus-16.png) !important;
+    background-repeat: no-repeat;
+}
+
+.previous {
+    background-image : url(../img/previous-16.png) !important;
+    background-repeat: no-repeat;
+}
+
+.run {
+    background-image : url(../img/running-man-16.png) !important;
+}
+
+.reload {
+    background-image : url(../img/sinchronize-16.png) !important;
+}
+
+.save {
+    background-image : url(../img/save-16.png) !important;
+}
+
+
+.settings-blue {
+    background-image : url(../img/settings-blue-16.png) !important;
+}
+
+.settings-white {
+    background-image : url(../img/settings-white-16.png) !important;
+}
+
+.share-blue {
+    background-image : url(../img/share-blue-16.png) !important;
+}
+
+.share-white {
+    background-image : url(../img/share-white-16.png) !important;
+}
+
+.test-tube {
+    background-image : url(../img/test-tube-16.png) !important;
+}
+
+.theme {
+    background-image : url(../img/theme-16.png) !important;
+}
+
+.user-blue {
+    background-image : url(../img/user-blue-16.png)   !important;
+    background-repeat: no-repeat;
+}

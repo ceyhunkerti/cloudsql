@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scheduler REST API Documentation</title>
+    <script src="assets/lib/jquery/jquery-2.0.3.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/doc/doc.css">
+
+    <script type="application/javascript">
+        $().ready(function () {
+            var docDiv = $("#doc");
+            $.get("assets/doc/REST.txt", function (data) {
+                var arrayOfLines = data.split("\n");
+                arrayOfLines.forEach(function (line) {
+                    if (line.substr(0, 1) === '#') {
+                        line = line.replace('# ', '');
+                        var group = $("<h2></h2>").text(line);
+                        docDiv.append(group);
+                    }
+                    if (line.substr(0, 1) === '[') {
+                        var header = $("<h4></h4>").text(line);
+                        docDiv.append(header);
+                    }
+
+                    if (line.substr(0, 1) === '/') {
+                        var url = $("<span></span>").addClass("url").text(line);
+                        docDiv.append(url);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<h2>Turkcell Scheduler REST API Documentation</h2>
+
+<p>Asagida Turkcell Scheduler projesi icin REST formatinda entegrasyon servisleri sunulmustur.</p>
+
+<p>REST cagrilari standart http metodlari kullanilarak yapilmaktadir. Belgede [] sembolleri icinde belirtilen
+    metodlar bu </p>
+
+<div id="doc"></div>
+</body>
+</html>

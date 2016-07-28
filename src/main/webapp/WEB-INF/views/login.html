@@ -1,0 +1,60 @@
+<html>
+<head>
+
+    <title>Sign In</title>
+
+    <link rel="shortcut icon" href="assets/resources/img/codecloud-blue-24.png" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="assets/lib/jquery/jquery-2.1.3.min.js"></script>
+    <script src="assets/lib/jquery/jquery.cookie.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/resources/css/login.css">
+
+    <link href="assets/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <script src="assets/lib/bootstrap/js/bootstrap.min.js"></script>
+
+
+
+    <script type="text/javascript">
+        $(document).ready( function () {
+            $('form').submit( function () {
+                var username = $('form').find('input[name="j_username"]').val();
+                $.cookie("username", username);
+            });
+        });
+    </script>
+
+
+</head>
+<body>
+
+<div class="container" id="container">
+    <div class="row" id="login-form-container">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title">Sign in to continue to CloudSQL
+            </h1>
+            <div class="account-wall">
+                <img class="profile-img" src="assets/resources/img/photo.png" alt="">
+                <form class="form-signin" action="j_spring_security_check"  method="POST">
+                    <input name="j_username" type="text" class="form-control" placeholder="Username" required autofocus>
+                    <input name="j_password" type="password" class="form-control" placeholder="Password" required>
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" name="submit" value="Sign In">
+                    <!--<label class="checkbox pull-left"><input type="checkbox" value="remember-me">Remember me
+                    </label>-->
+                    <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                </form>
+            </div>
+            <a href="#" class="text-center new-account">Request an account </a>
+        </div>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

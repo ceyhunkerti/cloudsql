@@ -1,0 +1,7 @@
+.x-panel-header-title-default>.x-title-text-default:after {
+    content: '' !important;
+}
+
+.x-window-header-title-default>.x-title-text-default:after {
+    content: '' !important;
+}
